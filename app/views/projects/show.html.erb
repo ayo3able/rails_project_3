@@ -1,0 +1,9 @@
+<h1><%= @project.title %></h1><br/>
+
+<h3><%= @project.goal %></h3><br/><br/>
+
+<div><%=link_to @project.team.title, team_path(@project.team) if @project.team %></div><br/>
+
+<div><%= @project.task.title%></div><br/>
+
+<div><%= @project.task.instructions%></div><br/>

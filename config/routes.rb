@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :teams
+  devise_for :tasks
+  devise_for :projects
+  devise_for :users
   resources :tasks
   resources :projects
   resources :teams

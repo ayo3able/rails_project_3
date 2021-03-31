@@ -1,0 +1,16 @@
+<h3>Project Form</h3>
+
+<%= form_for(@project) do |f| %>
+  <label>Project title:</label><br>
+  <%= f.text_field :title %><br>
+
+  <label>Project Goal</label><br>
+  <%= f.text_area :goal %><br>
+
+<%# dropdown box for change team %>
+
+<%= button_to "Delete Project", project_path(@project), method: :delete %> 
+
+
+  <%= f.submit %>
+<% end %> 
