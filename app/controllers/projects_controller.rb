@@ -1,34 +1,36 @@
 class ProjectsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :set_project, only: %i[ show edit update destroy ]
+    # before_action :authenticate_user!
     
     def index
         @projects = Project.all
     end
 
     def show
-      set_project
+     
     end
 
     def new
         @project = Project.new
-        @tasks = Task.all
     end
 
     def create
-       @project = Project.create(project_params)
-       redirect_to project_path(@project) 
+        @project = Project.new(project_params)
+        if @project.save
+     redirect_to projects_path(@project) 
+        end
     end
 
     def edit
-        @project = set_project
+       
     end
 
     def update
-        set_project
+       
         if @project.update(project_params)
         redirect_to project_path(@project)
         else
-            erb: edit
+            erb :edit
         end
     end
 
@@ -45,6 +47,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-        params.require(:project).permit(:name, :goal)
+        params.require(:project).permit(:title, :goal, :user_id, :team_id)
     end
 end

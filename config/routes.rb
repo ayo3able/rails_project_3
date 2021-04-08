@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :teams
-  devise_for :tasks
-  devise_for :projects
+  get 'home/about'
+  root 'home#index'
   devise_for :users
   resources :tasks
   resources :projects

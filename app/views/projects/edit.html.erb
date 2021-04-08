@@ -1,11 +1,11 @@
 <h3>Project Form</h3>
 
-<%= form_for(@project) do |f| %>
+<%= form_for :@project do |project| %>
   <label>Project title:</label><br>
-  <%= f.text_field :title %><br>
+  <%= project.text_field :title %><br>
 
   <label>Project Goal</label><br>
-  <%= f.text_area :goal %><br>
+  <%= project.text_area :goal %><br>
 
 <%# dropdown box for change team %>
 
