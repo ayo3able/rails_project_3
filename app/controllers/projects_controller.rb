@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
     before_action :set_project, only: %i[ show edit update destroy ]
-    # before_action :authenticate_user!
+     before_action :authenticate_user!
     
     def index
         @projects = Project.all
@@ -18,6 +18,8 @@ class ProjectsController < ApplicationController
         @project = Project.new(project_params)
         if @project.save
      redirect_to projects_path(@project) 
+        else
+            render :new
         end
     end
 

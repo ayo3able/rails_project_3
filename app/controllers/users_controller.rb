@@ -35,7 +35,10 @@ class UsersController < ApplicationController
     end
       
   def destroy
-    @user.destroy
+    
+        if @user && @user.destroy
+            redirect_to root_url, notice: "User deleted."
+        end
   end
 
     private
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:name, )
+        params.require(:user).permit(:name, :email, :username, :invite_accepted, :work_or_school, :work_name, :school_name)
     end
 
 
