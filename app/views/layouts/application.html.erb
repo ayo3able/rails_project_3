@@ -31,12 +31,6 @@
 
   <br/>
   <br/>
-<% if current_user%>
-  <footer>
-  <div><%= link_to '<button type="button">Delete Account</button>'.html_safe, cancel_user_registration_path, method: :delete, data: { confirm: 'Are you sure?' }%></div>
-   
-</footer>
 
-<% end %>
 </body>
 </html>

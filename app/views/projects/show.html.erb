@@ -1,9 +1,29 @@
-<h1><%= @project.title %></h1><br/>
 
-<h3><%= @project.goal %></h3><br/><br/>
 
-<div><%=link_to @project.team.title, team_path(@project.team) if @project.team %></div><br/>
+<h2><%= @project.title %></h2>
+<br/>
+<div><h4>Goal: <%= @project.goal %></h4></div>
+<br/><br/>
 
-<div><%= @project.task.title%></div><br/>
+<div><h6>Team: <%=link_to @project.team.name, team_path(@project.team)%></h6></div>
+<br/>
 
-<div><%= @project.task.instructions%></div><br/>
+   <div class ="card bg-warning" style="max-width: 30rem;">
+  
+  <h2 class="card-title text-center" >Tasks</h2>
+ </div>
+  <br/>
+   <br/>
+<% @project.tasks.each do |task| %>
+ <div class ="card border-warning" style="max-width: 30rem;">
+ <div class="card-header text-center"><%= task.title%></div>
+<br/>
+  <div class="card-body">
+<%=task.instructions%></div>
+<br/>
+</div>
+
+<div style="height: 10px;"></div>
+<% end %>
+
+

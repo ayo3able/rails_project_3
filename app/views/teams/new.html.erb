@@ -1,25 +1,12 @@
 
-<h1>New Project</h1>
-<%= form_for(@project) do |f| %>
-  <div class="field">
-    <%= f.label :title, 'Project Title:' %><br>
-    <%= f.text_field :title %>
-  </div>
+<h1>Create a New Team</h1>
 
-  <div class="field">
-    <%= f.label :goal, 'Project Goal:' %><br>
-    <%= f.text_area :goal %>
-  </div>
 
-<%# dropdown box for choose team %>
 
-<%# Add Task nested form %>
-  <%# <div class="field"> %>
-    <%# <%= f.label :category_id, 'Project Category:' %>
-    <%# <%= f.collection_radio_buttons :category_id, @categories, :id, :name %> %>
-  <%# </div> %>
+<h2> Add a Project for your New Team</h2>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+<h2> Add Task to your project</h2>
+
+
+<%# Submit Button %>

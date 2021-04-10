@@ -1,72 +1,134 @@
-<h1>Hello <%= current_user.email%></h1>
+<h1>Hello <%= current_user.username%></h1>
 
 <br/>
 <br/>
-
-
-<%# Team Div %>
 
 <div class="card-deck">
- <div class ="card">
+
+ <div class ="card bg-info">
+<h2 class="card-title text-center">My Teams</h2>
+ </div>
+
+  <div class ="card bg-success">
+  <h2 class="card-title text-center">My Projects</h2>
+ </div>
+
+   <div class ="card bg-warning">
+  <h2 class="card-title text-center">My Tasks</h2>
+ </div>
+ </div>
+
+
+
+<div class="card-deck">
+<%# Team Card %>
+ <div class ="card border-info mb-3">
      <% if current_user.teams.empty?%>
-      <div class="card-header"> No Teams Yet </div>
+      <div class="card-header text-center"> No Teams Yet </div>
       <div class="card-body"> <%= link_to '<button type="button">Start a New Team</button>'.html_safe, new_team_path %></div>
 
      <%else%>
- <% @teams.each do |team| %>
-  <div class="card-header">
+    <br/>
+       <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <%= link_to '<button type="button">Start New Team</button>'.html_safe, new_team_path %>
+    </div>
+  </div>
+  <br/>
+
+ <% current_user.teams.uniq.each do |team| %>
+  <div class="card-header border-info">
     <ul class="nav nav-pills card-header-pills">
+    
       <li class="nav-item">
-        <a class="nav-link active"><%= link_to 'edit', edit_team_path(team) %>Edit</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><%= link_to 'show', team %>See Task</a>
-      </li>
-    </ul>
+      <h3 class="card-title">Team: <%= team.name %></h3>
+        
   </div>
   <div class="card-body">
-    <h5 class="card-title"><%= team.title %></h5>
-      <br/>
-    <br/>
-    <div class="card-footer bg-transparent border-success"></div>
-    <a class="btn btn-alarm"><%= link_to 'delete', team, method: :delete, data: { confirm: 'Are you sure?' }%></a>
-  
-  </div>
+    <%= link_to '<button type="button">Edit</button>'.html_safe, edit_team_path(team) %>
+   
+    <%= link_to '<button type="button">Delete Team</button>'.html_safe, team, method: :delete, data: { confirm: 'Are you sure?' }%></div>
     <% end %>
   <% end %>
 </div>
+
+  
+
  
 
-<%# Project Section %>
+<%# Project Card %>
      
-     <div class ="card">
+  
      <% if current_user.projects.empty?%>
-     <div class="card-header"> No Projects Yet</div>
+     <div class ="card border-success">
+     <div class="card-header text-center"> No Projects Yet</div>
       <div class="card-body"> <h6>Start a new Team or Select Existing Team to Make a new Project</h6></div>
-      
-
+      </div>
      <%else%>
- <% @projects.each do |project| %>
-  <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active"><%= link_to 'edit', edit_project_path(project) %>Edit</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><%= link_to 'show', project %>SEE FULL TASK</a>
-      </li>
-    </ul>
+         <br/>
+       <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <%= link_to '<button type="button">Add Project to a Team</button>'.html_safe, user_teams_path %>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title"><%= project.title %></h5>
-    <p class="card-text"><%= project.goal %></p>
-    <br/>
-    <br/>
-    <div class="card-footer bg-transparent border-success"></div>
-    <a class="btn btn-primary"><%= link_to 'delete', project_path, method: :delete, data: { confirm: 'Are you sure?' }%></a>
-  </div>
-    <% end %>
-  <% end %>
+  <br/>
 
+  <div class ="card border-success mb-3">
+    <% current_user.projects.each do |project| %>
+    
+    
+     <div class="card-header border-success">
+      <h3><%= project.title %></h3>
+     </div>
+    <div class="card-body">
+    <p class="card-text"><%= project.goal %></p>
+    <%= link_to 'Full Project', project %>
+    </div>
+  
+    <div class="card-footer bg-transparent border-success">
+      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_project_path(project) %>
+      <%= link_to '<button type="button">Delete Project</button>'.html_safe, project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
+     </div>
+      <% end %>
+        <% end %>
+    </div>
+       
+       
+
+
+  <%# Task Card %>
+      
+      
+     <% if current_user.tasks.empty?%>
+      <div class ="card border-warning">
+     <div class="card-header text-center"> No Projects Yet</div>
+      <div class="card-body"> <h6>Start a new Team or Select Existing Team to Make a new Project</h6></div>
+      </div>
+  
+     <%else%>
+     
+      
+ 
+    <div class ="card border-warning">
+    <% current_user.tasks.uniq.each do |task| %>
+      <div class="card-header border-warning">
+      <h3 class="card-title"><%= task.title %></h3>
+      </div>
+        <div class="card-body">
+    
+    <p class="card-text">Start: <%= task.start %></p>
+    <p class="card-text">Deadline: <%= task.deadline %></p>
+    <p class="card-text text-truncate">Instructions: <%= task.instructions %></p>
+    <br/><br/>
+    <div class="nav-link"><%= link_to 'Full Task', task %></div>
+    
+    <div class="card-footer bg-transparent border-warning"></div>
+    <div><%= link_to '<button type="button">Edit</button>'.html_safe, edit_task_path(task) %>
+    <%= link_to '<button type="button">Delete Task</button>'.html_safe, task_path, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+ 
 </div>
 
