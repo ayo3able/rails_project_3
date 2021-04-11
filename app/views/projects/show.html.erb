@@ -26,4 +26,9 @@
 <div style="height: 10px;"></div>
 <% end %>
 
+<br/>
+   <div class="card-footer bg-transparent border-success">
+      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_project_path(project) %>
+      <%= link_to '<button type="button">Delete Project</button>'.html_safe, project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
+     </div>
 

@@ -1,16 +1,10 @@
-<h3>Project Form</h3>
-
-<%= form_for :@project do |project| %>
-  <label>Project title:</label><br>
-  <%= project.text_field :title %><br>
-
-  <label>Project Goal</label><br>
-  <%= project.text_area :goal %><br>
-
-<%# dropdown box for change team %>
-
-<%= button_to "Delete Project", project_path(@project), method: :delete %> 
+<h3> Edit A Project with <%= @team.name %> </h3>
 
 
+
+<%= form_for(@project) do |f| %>
+  Title: <%= f.text_field :title %><br />
+  Goal : <%= f.text_area :goal %><br />
+ 
   <%= f.submit %>
-<% end %> 
+<% end %>

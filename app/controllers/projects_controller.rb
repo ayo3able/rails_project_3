@@ -16,11 +16,14 @@ class ProjectsController < ApplicationController
 
     def create
         @project = Project.new(project_params)
-        if @project.save
-     redirect_to projects_path(@project) 
-        else
-            render :new
-        end
+        @project.team_id = @project_id
+        respond_to do |format|
+             if @project.save
+                format.html {redirect_to team_url(@project.team_id), notice: "Success"}
+            else
+                format.html {render :new}
+             end
+         end
     end
 
     def edit
@@ -28,19 +31,20 @@ class ProjectsController < ApplicationController
     end
 
     def update
-       
-        if @project.update(project_params)
-        redirect_to project_path(@project)
-        else
-            erb :edit
+       respond_to do |format|
+            if @project.update(project_params)
+                format.html {redirect_to team_url(@project.team_id), notice: "Success"}
+             else
+                format.html {render :edit}
+            end
         end
     end
 
     def destroy
-        if @user && @user.destroy
-            redirect_to users_path, notice: "Project deleted."
-        end
-
+        @project = Project.deestroy
+        respond_to do |format|
+            format.html {redirect_to team_url(@project.team_id), notice: "Bye Bye"}
+        end 
     end
 
     private

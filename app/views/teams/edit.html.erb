@@ -1,2 +1,10 @@
-<%# Form for edit Team / Add a project %>
-<h1>edit</h1>
+<h3> Change Team Name</h3>
+
+
+
+<%= form_for(@team) do |f| %>
+  Name: <%= f.text_field :name %><br />
+  
+ 
+  <%= f.submit %>
+<% end %>

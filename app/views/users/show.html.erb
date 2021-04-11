@@ -18,20 +18,18 @@
  </div>
  </div>
 
-
-
 <div class="card-deck">
 <%# Team Card %>
  <div class ="card border-info mb-3">
      <% if current_user.teams.empty?%>
       <div class="card-header text-center"> No Teams Yet </div>
-      <div class="card-body"> <%= link_to '<button type="button">Start a New Team</button>'.html_safe, new_team_path %></div>
+      <div class="card-body"> <%= link_to '<button type="button">Start a New Team</button>'.html_safe, new_team_path(@user) %></div>
 
      <%else%>
     <br/>
        <div class="row">
     <div class="col-md-8 offset-md-2">
-      <%= link_to '<button type="button">Start New Team</button>'.html_safe, new_team_path %>
+      <%# <%= link_to '<button type="button">Start New Team</button>'.html_safe, new_team_project_path(@team)%> %>
     </div>
   </div>
   <br/>
@@ -45,16 +43,15 @@
         
   </div>
   <div class="card-body">
+       
+    <%= link_to '<button type="button">Add a Project</button>'.html_safe, new_team_project_path(team) %>
+
     <%= link_to '<button type="button">Edit</button>'.html_safe, edit_team_path(team) %>
    
     <%= link_to '<button type="button">Delete Team</button>'.html_safe, team, method: :delete, data: { confirm: 'Are you sure?' }%></div>
     <% end %>
   <% end %>
 </div>
-
-  
-
- 
 
 <%# Project Card %>
      
@@ -66,11 +63,7 @@
       </div>
      <%else%>
          <br/>
-       <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <%= link_to '<button type="button">Add Project to a Team</button>'.html_safe, user_teams_path %>
-    </div>
-  </div>
+  
   <br/>
 
   <div class ="card border-success mb-3">
@@ -94,10 +87,7 @@
     </div>
        
        
-
-
   <%# Task Card %>
-      
       
      <% if current_user.tasks.empty?%>
       <div class ="card border-warning">
@@ -120,7 +110,7 @@
     <p class="card-text">Deadline: <%= task.deadline %></p>
     <p class="card-text text-truncate">Instructions: <%= task.instructions %></p>
     <br/><br/>
-    <div class="nav-link"><%= link_to 'Full Task', task %></div>
+    <div class="nav-link"><%= link_to 'Full Task', task_path %></div>
     
     <div class="card-footer bg-transparent border-warning"></div>
     <div><%= link_to '<button type="button">Edit</button>'.html_safe, edit_task_path(task) %>
