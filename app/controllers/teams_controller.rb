@@ -12,6 +12,7 @@ class TeamsController < ApplicationController
 
    def new
        @team = Team.new
+       @team.projects.build
    end
 
    def create
@@ -49,7 +50,9 @@ class TeamsController < ApplicationController
    end
 
    def team_params
-       params.require(:team).permit(:name)
+       params.require(:team).permit(
+           :name,
+           projects_attributes: [:title, :goal])
    end
 
 

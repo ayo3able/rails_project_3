@@ -1,9 +1,24 @@
-<h3> Make A Project with <%= @team.name %> </h3>
+<% if @project.errors.any?%>
+  <%@project.errors.full_message.each do |mess|%>
+    <li style="color: red"><%= mess%></li>
+  <%end%>
+<%end%>
 
 
 
-<%= form_for(@project) do |f| %>
- Title: <%= f.text_field :title %><br />
-  Goal : <%= f.text_area :goal %><br />
-  <%= f.submit %>
+
+
+
+<h1>Add a Project to Team <%%></h1>
+
+<%= form_with model: @team do |f| %>
+
+<%= fields_for :projects do |project_f| %>
+  <%= f.label :title %>
+  <%= project_f.text_field :title %><br />
+  <%= f.label :goal %>
+  <%= project_f.text_area :goal %><br />
+  
+<% end %>
+<%= f.submit %>
 <% end %>

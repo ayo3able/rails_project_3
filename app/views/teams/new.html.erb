@@ -1,11 +1,23 @@
+<% if @team.errors.any?%>
+  <%@team.errors.full_message.each do |mess|%>
+    <li style="color: red"><%= mess%></li>
+  <%end%>
+<%end%>
 
 
 <h3> Start A Team</h3>
 
-
-
 <%= form_for :team do |f| %>
- Name: <%= f.text_field :name %><br />
+<%= f.label :name%>
+<%= f.text_field :name %><br/>
   
-  <%= f.submit %>
+
+  <h3> Add A Project</h3>
+
+<%= fields_for :projects do |project_f| %>
+  Title: <%= project_f.text_field :title %><br />
+  Goal : <%= project_f.text_area :goal %><br />
+  
+<% end %>
+<%= f.submit %>
 <% end %>

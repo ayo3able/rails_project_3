@@ -1,11 +1,43 @@
-<h3> Make A Task with <%= @team.name %> for <%= @project.name %> Project </h3>
+% if @team.errors.any?%>
+  <%@team.errors.full_message.each do |mess|%>
+    <li style="color: red"><%= mess%></li>
+  <%end%>
+<%end%>
 
 
 
-<%= form_for :task do |f| %>
-  Title: <%= f.text_field :title %><br />
-  Start date : <%= f.date_select :start %><br />
-  Deadline : <%= f.date_select :deadline %><br />
-  Instructions  : <%= f.text_area :instructions %><br />
-  <%= f.submit %>
+<%= form_for(@project) do |f| %>
+<%= f.label :title %>
+<%= f.text_field :title %><br/>
+<%= f.label :goal %>
+<%= f.text_area :goal%>
+  
+
+  <h3> Make A Task for <%= @project.name %> Project </h3>
+
+<%= fields_for :task do |f| %>
+
+    <%= f.label :title%>
+    <%= f.text_field :title %><br />
+    <%= f.label :start %>
+    <%= f.date_select :start %><br />
+    <%= f.label :deadline %>
+    <%= f.date_select :deadline %><br />
+    <%= f.label :instructions %>
+     <%= f.rich_text_area :instructions %><br />
+    
+  
 <% end %>
+<%= f.submit %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+

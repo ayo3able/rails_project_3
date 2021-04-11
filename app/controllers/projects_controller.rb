@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
     
     def index
         @projects = Project.all
+        @projects.tasks.build
     end
 
     def show
@@ -55,6 +56,11 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-        params.require(:project).permit(:title, :goal, :user_id, :team_id)
+        params.require(:project).permit(
+            :title,
+             :goal, 
+             :user_id, 
+             :team_id,
+             tasks_attributes: [:title, :start, :deadline, :instrutions] )
     end
 end
