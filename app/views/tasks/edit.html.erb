@@ -6,7 +6,7 @@
 
 <div class="card-body"></div>
 
-<%= form_for(@task) do |f| %>
+<%= form_with url: edit_task_path(@task) do |f| %>
 <%= f.label :title%>
  <%= f.text_field :title %><br/>
 <%= f.label :start%>

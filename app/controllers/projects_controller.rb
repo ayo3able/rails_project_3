@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
     
     def index
         @projects = Project.all
-        @projects.tasks.build
+       
     end
 
     def show
@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
     def new
         @project = Project.new
+        @projects.tasks.build
     end
 
     def create

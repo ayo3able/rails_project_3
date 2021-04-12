@@ -11,7 +11,7 @@
 <div class ="card border-success"style="max-width: 50rem;">
   <h2 class="card-title bg-success text-center">Start a New Project for Team<%=%></h2>
   <div class= "card-body">
-  <%= form_with model: @project do |f| %>
+  <%= form_with url: new_project_path do |f| %>
 <%= f.label :title%><br/>
 <%= f.text_field :title%><br/>
 <%= f.label :goal%><br/>

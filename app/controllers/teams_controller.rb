@@ -46,7 +46,6 @@ class TeamsController < ApplicationController
         redirect_to user_path
     end
 
-   end
 
    private
 

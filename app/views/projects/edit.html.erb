@@ -4,9 +4,7 @@
  <br/>
 
 
-<%= form_with model: @team do |f| %>
-
-<%= fields_for @projects do |project_f| %>
+<%= form_with url: edit_project_path(@project) do |project_f| %>
   <%= project_f.label :title %>
   <%= project_f.text_field :title %><br />
   <%= project_f.label :goal %>

@@ -7,7 +7,7 @@
 <div class ="card border-success"style="max-width: 50rem;">
   <h2 class="card-title bg-success text-center">Start a New Task</h2>
   <div class= "card-body">
-  <%= form_with model: @project do |f| %>
+  <%= form_with url: new_project_task_path(@project) do |f| %>
 
 <%= fields_for @tasks do |task_f| %>
   <%= task_f.label :title %><br/>
