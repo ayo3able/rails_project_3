@@ -16,12 +16,15 @@ class TeamsController < ApplicationController
    end
 
    def create
-       @team = Team.new(team_params)
-       if @team.save
-    redirect_to teams_path(@team) 
-       else
-           render :new
-       end
+    @team = Team.new(team_params)
+    @team.team_id = @team_id
+    
+         if @team.save
+            redirect_to team_path(@team)
+        else
+            render :new
+         end
+  
    end
 
    def edit
@@ -29,17 +32,20 @@ class TeamsController < ApplicationController
    end
 
    def update
-      
-       if @team.update(team_params)
-       redirect_to team_path(@team)
-       else
-           erb :edit
-       end
+  
+        if @team.update(team_params)
+            redirect_to team_path(@team)
+         else
+           render :edit
+        end
+   
    end
 
    def destroy
-       @team = Project.destroy
-       redirect_to team_path
+    @team.destroy
+        redirect_to user_path
+    end
+
    end
 
    private

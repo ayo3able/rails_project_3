@@ -8,17 +8,57 @@
 
 
 
+<div class ="card border-success"style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Start a New Project for Team<%=%></h2>
+  <div class= "card-body">
+  <%= form_with model: @project do |f| %>
+<%= f.label :title%><br/>
+<%= f.text_field :title%><br/>
+<%= f.label :goal%><br/>
+<%= f.text_area :goal%><br/>
+  </div>
+ </div>
 
-<h1>Add a Project to Team <%%></h1>
+<br/>
+<br/>
 
-<%= form_with model: @team do |f| %>
+<div class ="card border-success"style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Add Tasks<%=%></h2>
+  <div class= "card-body">
+<%= fields_for @tasks do |task_f| %>
+  <%= task_f.label :title %><br/>
+  <%= task_f.text_field :title %><br/>
+  <%= task_f.label :start %><br/>
+  <%= task_f.date_select :start %><br/>
+  <%= task_f.label :deadline %><br/>
+  <%= task_f.date_select :deadline %><br/>
+  <%= task_f.label :instructions %><br/>
+  <%= task_f.text_area :instructions %><br/>
+<% end %>
+</div>
+</div>
 
-<%= fields_for :projects do |project_f| %>
-  <%= f.label :title %>
-  <%= project_f.text_field :title %><br />
-  <%= f.label :goal %>
-  <%= project_f.text_area :goal %><br />
-  
+<br/>
+<br/>
+<div class ="card border-success"style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Add Tasks<%=%></h2>
+  <div class= "card-body">
+<%= fields_for @tasks do |task_f| %>
+  <%= task_f.label :title %><br/>
+  <%= task_f.text_field :title %><br/>
+  <%= task_f.label :start %><br/>
+  <%= task_f.date_select :start %><br/>
+  <%= task_f.label :deadline %><br/>
+  <%= task_f.date_select :deadline %><br/>
+  <%= task_f.label :instructions %><br/>
+  <%= task_f.text_area :instructions %><br/>
 <% end %>
 <%= f.submit %>
 <% end %>
+
+</div>
+</div>
+
+
+<br/>
+<br/>

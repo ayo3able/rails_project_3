@@ -1,0 +1,21 @@
+
+
+ <div class ="card border-warning" style="max-width: 50rem;">
+ <div class="card-header bg-warning text-center"><h4><%= @task.title%></h4></div>
+<br/>
+  <div class="card-body">
+
+   <p class="card-text">Start: <%= @task.start %></p>
+    <p class="card-text">Deadline: <%= @task.deadline %></p>
+    <p class="card-text text-truncate">Instructions: <%= @task.instructions %></p>
+    <br/><br/>
+</div>
+<br/>
+
+   <div class="card-footer border-warning "></div>
+    <div><%= link_to '<button type="button">Edit</button>'.html_safe, edit_task_path %>
+    <%= link_to '<button type="button">Delete Task</button>'.html_safe, task_path, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+  <br/>
+  </div>
+  
+</div>

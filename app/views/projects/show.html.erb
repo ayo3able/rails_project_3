@@ -1,6 +1,6 @@
 
 
-<h2><%= @project.title %></h2>
+<div class="bg-success"><h1>Project: <%= @project.title %></h1></div>
 <br/>
 <div><h4>Goal: <%= @project.goal %></h4></div>
 <br/><br/>
@@ -8,27 +8,36 @@
 <div><h6>Team: <%=link_to @project.team.name, team_path(@project.team)%></h6></div>
 <br/>
 
-   <div class ="card bg-warning" style="max-width: 30rem;">
+ <br/>
+   <div class ="card bg-warning" style="max-width: 50rem;">
   
   <h2 class="card-title text-center" >Tasks</h2>
  </div>
   <br/>
    <br/>
 <% @project.tasks.each do |task| %>
- <div class ="card border-warning" style="max-width: 30rem;">
+ <div class ="card border-warning" style="max-width: 50rem;">
  <div class="card-header text-center"><%= task.title%></div>
 <br/>
   <div class="card-body">
-<%=task.instructions%></div>
+  <h6>Start Date:</h6>
+  <p><%=task.start%></p>
+  <br/>
+  <h6>Deadline:</h6>
+   <p><%=task.deadline%></p>
+   <br/>
+   <h6>Instructions:</h6>
+  <p><%=task.instructions%></p></div>
 <br/>
 </div>
-
+ 
 <div style="height: 10px;"></div>
 <% end %>
-
-<br/>
-   <div class="card-footer bg-transparent border-success">
-      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_project_path(project) %>
+<div class="card-footer bg-transparent border-success">
+    <%= link_to '<button type="button">Add a Task</button>'.html_safe, new_project_task_path(project_id: @project.id) %>
+      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_project_path %>
       <%= link_to '<button type="button">Delete Project</button>'.html_safe, project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
      </div>
+<br/>
+  
 

@@ -72,11 +72,13 @@
     
      <div class="card-header border-success">
       <h3><%= project.title %></h3>
-      <p><%= project.team.name%></p>
+      <p>Team: <%= project.team.name%></p>
+       
      </div>
     <div class="card-body">
     <p class="card-text"><%= project.goal %></p>
-    <%= link_to 'Full Project', project %>
+    <%= link_to 'Full Project', project %><br/><br/>
+    <%= link_to '<button type="button">Add a Task</button>'.html_safe, new_project_task_path(project_id: project.id) %>
     </div>
   
     <div class="card-footer bg-transparent border-success">
@@ -104,8 +106,10 @@
     <% current_user.tasks.uniq.each do |task| %>
       <div class="card-header border-warning">
       <h3 class="card-title"><%= task.title %></h3>
+      <p>Project: <%=task.project.title%></p>
       </div>
         <div class="card-body">
+
     
     <p class="card-text">Start: <%= task.start %></p>
     <p class="card-text">Deadline: <%= task.deadline %></p>

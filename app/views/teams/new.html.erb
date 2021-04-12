@@ -4,20 +4,27 @@
   <%end%>
 <%end%>
 
+<div class ="card border-info" style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Start Team<%=%></h2>
+  <div class= "card-body">
 
-<h3> Start A Team</h3>
+<%= form_with model: @team do |f| %>
 
-<%= form_for :team do |f| %>
-<%= f.label :name%>
+<%= f.label :name%><br/>
 <%= f.text_field :name %><br/>
-  
+ 
+<br/>
 
-  <h3> Add A Project</h3>
+  <div class="bg-success border-success"><h5> Add A Project</h5></div>
 
-<%= fields_for :projects do |project_f| %>
-  Title: <%= project_f.text_field :title %><br />
-  Goal : <%= project_f.text_area :goal %><br />
+<%= fields_for @projects do |project_f| %>
+    <%=project_f.label :title%><br/>
+    <%= project_f.text_field :title %><br />
+    <%=project_f.label :goal%><br/>
+    <%= project_f.text_area :goal %><br />
   
 <% end %>
 <%= f.submit %>
 <% end %>
+ </div>
+  </div>

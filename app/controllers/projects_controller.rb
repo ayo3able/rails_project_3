@@ -17,14 +17,13 @@ class ProjectsController < ApplicationController
 
     def create
         @project = Project.new(project_params)
-        @project.team_id = @project_id
-        respond_to do |format|
+      
              if @project.save
-                format.html {redirect_to team_url(@project.team_id), notice: "Success"}
+               redirect_to project_path(@project)
             else
-                format.html {render :new}
+               render :new
              end
-         end
+        
     end
 
     def edit
@@ -32,20 +31,18 @@ class ProjectsController < ApplicationController
     end
 
     def update
-       respond_to do |format|
+      
             if @project.update(project_params)
-                format.html {redirect_to team_url(@project.team_id), notice: "Success"}
+                redirect_to team_url(@project.team_id)
              else
-                format.html {render :edit}
-            end
+                render :edit
         end
     end
 
     def destroy
-        @project = Project.deestroy
-        respond_to do |format|
-            format.html {redirect_to team_url(@project.team_id), notice: "Bye Bye"}
-        end 
+        @project.destroy
+        redirect_to user_path
+        
     end
 
     private

@@ -1,0 +1,37 @@
+<% if @task.errors.any?%>
+  <%@task.errors.full_message.each do |mess|%>
+    <li style="color: red"><%= mess%></li>
+  <%end%>
+<%end%>
+
+<div class ="card border-success"style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Start a New Task</h2>
+  <div class= "card-body">
+  <%= form_with model: @project do |f| %>
+
+<%= fields_for @tasks do |task_f| %>
+  <%= task_f.label :title %><br/>
+  <%= task_f.text_field :title %><br/>
+  <%= task_f.label :start %><br/>
+  <%= task_f.date_select :start %><br/>
+  <%= task_f.label :deadline %><br/>
+  <%= task_f.date_select :deadline %><br/>
+  <%= task_f.label :instructions %><br/>
+  <%= task_f.text_area :instructions %><br/>
+<% end %>
+
+
+<%= f.submit %>
+<% end %>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   get 'home/about'
   root 'home#index'
+
   devise_for :users
 
    resources :teams, shallow: true do
       resources :projects do
-   resources :tasks, controller: "projects/tasks"
+   resources :tasks
   end
   end
 
