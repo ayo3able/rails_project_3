@@ -28,15 +28,18 @@
    <br/>
    <h6>Instructions:</h6>
   <p><%=task.instructions%></p></div>
+  <div class="card-footer bg-transparent border-success">
+<%= button_to 'Delete', task_path(task), method: :delete, data: { confirm: 'Are you sure?' }%>
+   </div>
 <br/>
 </div>
- 
 <div style="height: 10px;"></div>
 <% end %>
 <div class="card-footer bg-transparent border-success">
-    <%= link_to '<button type="button">Add a Task</button>'.html_safe, new_project_task_path(project_id: @project.id) %>
-      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_project_path %>
-      <%= link_to '<button type="button">Delete Project</button>'.html_safe, project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
+    <%= link_to "Add a Task", project_tasks_path(project_id: @project) %>
+      <%= link_to 'Edit', edit_project_path %>
+      <br/>
+      <%= button_to 'Delete', project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
      </div>
 <br/>
   

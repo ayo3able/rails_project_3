@@ -7,14 +7,16 @@
 
    <p class="card-text">Start: <%= @task.start %></p>
     <p class="card-text">Deadline: <%= @task.deadline %></p>
-    <p class="card-text text-truncate">Instructions: <%= @task.instructions %></p>
+    <p class="card-text text-truncate">Instructions: <%=@task.instructions %></p>
     <br/><br/>
 </div>
 <br/>
 
    <div class="card-footer border-warning "></div>
-    <div><%= link_to '<button type="button">Edit</button>'.html_safe, edit_task_path %>
-    <%= link_to '<button type="button">Delete Task</button>'.html_safe, task_path, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+    <div><%= link_to 'Edit', edit_task_path %>
+    <br/>
+    <br/>
+    <%= button_to "Delete", task_path, method: :delete, data: { confirm: 'Are you sure?' }%></div>
   <br/>
   </div>
   

@@ -1,15 +1,24 @@
-<h3> Edit Project <%=@project.title%></h3>
+<% if @project.errors.any?%>
+  <%@project.errors.full_messages.each do |mess|%>
+    <li style="color: red"><%= mess%></li>
+  <%end%>
+<%end%>
+
+
+<div class ="card border-success"style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Edit Project: <%=@project.title%></h2>
+  <div class= "card-body">
  <h4>Current Goal: <%=@project.goal%></h4>
  <br/>
  <br/>
 
-
-<%= form_with url: edit_project_path(@project) do |project_f| %>
+<%= form_for(@project) do |project_f| %>
   <%= project_f.label :title %>
   <%= project_f.text_field :title %><br />
   <%= project_f.label :goal %>
   <%= project_f.text_area :goal %><br />
-  
+
+<%= project_f.submit %>
 <% end %>
-<%= f.submit %>
-<% end %>
+</div>
+</div>

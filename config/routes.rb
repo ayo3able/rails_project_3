@@ -4,16 +4,20 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-   resources :teams, shallow: true do
       resources :projects do
    resources :tasks
   end
-  end
 
-  resources :projects
+  resources :teams do
+    resources :projects
+  end
+  
+
   resources :tasks
+  resources :projects
   resources :teams
-  resources :users
+ 
+  resources :users, only:[:show]
   
  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

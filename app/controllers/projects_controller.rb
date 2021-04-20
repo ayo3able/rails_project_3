@@ -11,12 +11,16 @@ class ProjectsController < ApplicationController
      
     end
 
+
     def new
-        @project = Project.new
-        @projects.tasks.build
+        @team = Team.find_by(id: params[:team_id])
+        @project = @team.projects.build
+         @project.tasks.build
+       
     end
 
     def create
+      
         @project = Project.new(project_params)
       
              if @project.save
@@ -54,11 +58,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-        params.require(:project).permit(
-            :title,
-             :goal, 
-             :user_id, 
-             :team_id,
-             tasks_attributes: [:title, :start, :deadline, :instrutions] )
+        params.require(:project).permit(:title, :goal, :user_id, :team_id, tasks_attributes: [:title, :start, :deadline, :instructions, :user_id, :project_id] )
     end
 end

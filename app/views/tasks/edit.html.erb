@@ -1,3 +1,9 @@
+<% if @task.errors.any?%>
+  <%@task.errors.full_messages.each do |mess|%>
+    <li style="color: red"><%= mess%></li>
+  <%end%>
+<%end%>
+
 <div class ="card border-warning" style="max-width: 50rem;">
  <div class="card-header bg-warning text-center">
  <h3> Edit Task in <%= @task.project.title %> for <%= @task.project.team.name %> Project </h3></div>
@@ -6,7 +12,7 @@
 
 <div class="card-body"></div>
 
-<%= form_with url: edit_task_path(@task) do |f| %>
+<%= form_for(@task) do |f| %>
 <%= f.label :title%>
  <%= f.text_field :title %><br/>
 <%= f.label :start%>

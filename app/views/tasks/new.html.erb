@@ -1,25 +1,26 @@
 <% if @task.errors.any?%>
-  <%@task.errors.full_message.each do |mess|%>
+  <%@task.errors.full_messages.each do |mess|%>
     <li style="color: red"><%= mess%></li>
   <%end%>
 <%end%>
 
 <div class ="card border-success"style="max-width: 50rem;">
-  <h2 class="card-title bg-success text-center">Start a New Task</h2>
+  <h2 class="card-title bg-success text-center">Start a New Task </h2>
+
   <div class= "card-body">
-  <%= form_with url: new_project_task_path(@project) do |f| %>
+  <%= form_for(@task, url: tasks_path) do |f| %>
 
-<%= fields_for @tasks do |task_f| %>
-  <%= task_f.label :title %><br/>
-  <%= task_f.text_field :title %><br/>
-  <%= task_f.label :start %><br/>
-  <%= task_f.date_select :start %><br/>
-  <%= task_f.label :deadline %><br/>
-  <%= task_f.date_select :deadline %><br/>
-  <%= task_f.label :instructions %><br/>
-  <%= task_f.text_area :instructions %><br/>
-<% end %>
 
+  <%= f.label :title %><br/>
+  <%= f.text_field :title %><br/>
+  <%= f.label :start %><br/>
+  <%= f.date_select :start %><br/>
+  <%= f.label :deadline %><br/>
+  <%= f.date_select :deadline %><br/>
+  <%= f.label :instructions %><br/>
+  <%= f.text_area :instructions %><br/>
+  <%=f.hidden_field :project_id, value: @task.project_id %>
+  <%=f.hidden_field :user_id, value: current_user.id%>
 
 <%= f.submit %>
 <% end %>

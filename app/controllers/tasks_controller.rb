@@ -12,13 +12,16 @@ class TasksController < ApplicationController
     end
 
     def new
-        @task = Task.new  
-        @tasks.project.build
+        @project = Project.find_by(id: params[:project_id])
+        @task = @project.tasks.build 
+       
     end
 
     def create
+        
         @task = Task.new(task_params)
-      
+     
+    
              if @task.save
                redirect_to task_path(@task)
             else
@@ -52,6 +55,6 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.require(:task).permit(:title, :start, :deadline, :instrutions )
+        params.require(:task).permit(:title, :start, :deadline, :instructions, :project_id, :user_id )
     end
 end

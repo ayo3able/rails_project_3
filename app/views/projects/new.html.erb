@@ -1,5 +1,5 @@
 <% if @project.errors.any?%>
-  <%@project.errors.full_message.each do |mess|%>
+  <%=@project.errors.full_messages.each do |mess|%>
     <li style="color: red"><%= mess%></li>
   <%end%>
 <%end%>
@@ -9,13 +9,19 @@
 
 
 <div class ="card border-success"style="max-width: 50rem;">
-  <h2 class="card-title bg-success text-center">Start a New Project for Team<%=%></h2>
+  <h2 class="card-title bg-success text-center">Start a New Project</h2>
   <div class= "card-body">
-  <%= form_with url: new_project_path do |f| %>
-<%= f.label :title%><br/>
-<%= f.text_field :title%><br/>
-<%= f.label :goal%><br/>
-<%= f.text_area :goal%><br/>
+  <%= form_for(@project, url: team_projects_path) do |f| %>
+<%= f.label :title%>
+<br/>
+<%= f.text_field :title%>
+<br/>
+<%= f.label :goal%>
+<br/>
+<%= f.text_area :goal%>
+<br/>
+<%= f.hidden_field :team_id, value: @project.team_id %>
+<%= f.hidden_field :user_id, value: current_user.id %>
   </div>
  </div>
 
@@ -23,42 +29,36 @@
 <br/>
 
 <div class ="card border-success"style="max-width: 50rem;">
-  <h2 class="card-title bg-success text-center">Add Tasks<%=%></h2>
+  <h2 class="card-title bg-success text-center">Add Tasks</h2>
   <div class= "card-body">
-<%= fields_for @tasks do |task_f| %>
-  <%= task_f.label :title %><br/>
-  <%= task_f.text_field :title %><br/>
-  <%= task_f.label :start %><br/>
-  <%= task_f.date_select :start %><br/>
-  <%= task_f.label :deadline %><br/>
-  <%= task_f.date_select :deadline %><br/>
-  <%= task_f.label :instructions %><br/>
-  <%= task_f.text_area :instructions %><br/>
+
+
+<%= f.fields_for :tasks do |task_f| %>
+  <%= task_f.label :title %>
+  <br/>
+  <%= task_f.text_field :title %>
+  <br/>
+  <%= task_f.label :start %>
+  <br/>
+  <%= task_f.date_select :start %>
+  <br/>
+  <%= task_f.label :deadline %>
+  <br/>
+  <%= task_f.date_select :deadline %>
+  <br/>
+  <%= task_f.label :instructions %>
+  <br/>
+  <%= task_f.text_area :instructions %>
+  <br/>
+  <%= task_f.hidden_field :user_id, value: current_user.id %>
+  <%= task_f.hidden_field :project_id, value: @project.id %>
+ 
+  </div>
+</div>
 <% end %>
+<%= f.submit%>
+
+<%end%>
 </div>
 </div>
 
-<br/>
-<br/>
-<div class ="card border-success"style="max-width: 50rem;">
-  <h2 class="card-title bg-success text-center">Add Tasks<%=%></h2>
-  <div class= "card-body">
-<%= fields_for @tasks do |task_f| %>
-  <%= task_f.label :title %><br/>
-  <%= task_f.text_field :title %><br/>
-  <%= task_f.label :start %><br/>
-  <%= task_f.date_select :start %><br/>
-  <%= task_f.label :deadline %><br/>
-  <%= task_f.date_select :deadline %><br/>
-  <%= task_f.label :instructions %><br/>
-  <%= task_f.text_area :instructions %><br/>
-<% end %>
-<%= f.submit %>
-<% end %>
-
-</div>
-</div>
-
-
-<br/>
-<br/>

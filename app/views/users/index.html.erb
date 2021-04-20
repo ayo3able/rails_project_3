@@ -27,7 +27,7 @@
  <div class ="card border-info mb-3">
      <% if current_user.teams.empty?%>
       <div class="card-header text-center"> No Teams Yet </div>
-      <div class="card-body"> <%= link_to '<button type="button">Start a New Team</button>'.html_safe, new_team_path %></div>
+      <div class="card-body"> <%= link_to "start a Team", new_team_path %></div>
 
      <%else%>
  <% current_user.teams.uniq.each do |team| %>
@@ -39,9 +39,9 @@
         
   </div>
   <div class="card-body">
-    <%= link_to '<button type="button">Edit</button>'.html_safe, edit_team_path(team) %>
+    <%= link_to 'Edit', edit_team_path(team) %>
    
-    <%= link_to '<button type="button">Delete Team</button>'.html_safe, team, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+    <%= link_to 'Delete Team', team, method: :delete, data: { confirm: 'Are you sure?' }%></div>
     <% end %>
   <% end %>
 </div>

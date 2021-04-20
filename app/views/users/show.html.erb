@@ -20,21 +20,21 @@
 
 <div class="card-deck">
 <%# Team Card %>
+ <% if current_user.teams.empty?%>
  <div class ="card border-info mb-3">
-     <% if current_user.teams.empty?%>
+    
       <div class="card-header text-center"> No Teams Yet </div>
-      <div class="card-body"> <%= link_to '<button type="button">Start a New Team</button>'.html_safe, new_team_path(@team) %></div>
-
-     <%else%>
+      <div class="card-body"> <%= link_to "Add a new Team", new_team_path(@team) %></div>
     <br/>
        <div class="row">
     <div class="col-md-8 offset-md-2">
-      <%= link_to '<button type="button">Start New Team</button>'.html_safe, new_team_path(@team)%>
+      <%= link_to 'Add a new Team'.html_safe, new_team_path(@team)%>
     </div>
   </div>
   <br/>
-
+ <%else%>
  <% current_user.teams.uniq.each do |team| %>
+ <div class ="card border-info mb-3">
   <div class="card-header text-center border-info">
     <ul class="nav nav-pills card-header-pills">
     
@@ -44,11 +44,12 @@
   </div>
   <div class="card-body">
        
-    <%= link_to '<button type="button">Add a Project</button>'.html_safe, new_team_project_path(team_id: team.id) %>
+    <%= link_to "Add a Project", new_team_project_path(team) %><br/><br/>
 
-    <%= link_to '<button type="button">Edit</button>'.html_safe, edit_team_path(team) %>
+    <%= link_to "Edit", edit_team_path(team) %>
+    <br/><br/>
    
-    <%= link_to '<button type="button">Delete Team</button>'.html_safe, team, method: :delete, data: { confirm: 'Are you sure?' }%></div>
+    <%= button_to "Delete", team, method: :delete, data: { confirm: 'Are you sure?' }%></div>
     <% end %>
   <% end %>
 </div>
@@ -71,19 +72,22 @@
     
     
      <div class="card-header text-center  border-success">
-      <h3><%= project.title %></h3>
+      <h3>Project: <%= project.title %></h3>
       <p>Team: <%= project.team.name%></p>
        
      </div>
     <div class="card-body">
     <p class="card-text"><%= project.goal %></p>
-    <%= link_to 'Full Project', project %><br/><br/>
-    <%= link_to '<button type="button">Add a Task</button>'.html_safe, new_project_task_path(project_id: project.id) %>
+    <%= link_to 'Full Project', project %>
+    <br/>
+    <br/>
+    <%= link_to "Add a Task", new_project_task_path(project) %>
     </div>
   
     <div class="card-footer bg-transparent border-success">
-      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_project_path(project) %>
-      <%= link_to '<button type="button">Delete Project</button>'.html_safe, project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
+      <%= link_to "Edit", edit_project_path(project) %>
+      <br/><br/>
+      <%= link_to "Delete Project", project_path, method: :delete, data: { confirm: 'Are you sure?' }%>
      </div>
       <% end %>
         <% end %>
@@ -92,8 +96,9 @@
     <%# Task Card %>
     
     <%if current_user.tasks.empty? %>
-       <div class="card border-warning">
+      <div class ="card border-warning mb-3">
           <div class="card-header text-center"><h4> No Tasks Yet</h4>
+          <div class="card-body"></div>
           </div>
        </div>
 
@@ -110,11 +115,12 @@
        <p class="card-text">Deadline: <%=task.deadline%></p>
        <p class="card-text text-truncate">instructions: <%=task.instructions%></p>
  
-    <div><%=link_to '<button type="button">Full Task</button>'.html_safe, task_path(task)%></div><br/>
+    <div><%=link_to "Full Task", task_path(task)%></div><br/>
 
 <div class="card-footer bg-transparent border-success">
-      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_task_path(task) %>
-      <%= link_to '<button type="button">Delete Task</button>'.html_safe, task_path(task), method: :delete, data: { confirm: 'Are you sure?' }%>
+      <%= link_to "Edit", edit_task_path(task) %>
+      <br/><br/>
+      <%= button_to "Delete", task_path(task), method: :delete, data: { confirm: 'Are you sure?' }%>
      
      </div>
     </div>

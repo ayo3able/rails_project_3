@@ -1,11 +1,16 @@
-<h3> Change Team Name</h3>
 
 
+<div class ="card border-info" style="max-width: 50rem;">
+  <h2 class="card-title bg-success text-center">Change Team Name</h2>
+  <div class= "card-body">
 
 <%= form_for(@team) do |f| %>
 <%=f.label :name%>
-<%= f.text_field :name %><br />
+<%= f.text_field :name %>
+<br/>
+<br/>
   
- 
   <%= f.submit %>
 <% end %>
+</div>
+</div>

@@ -1,5 +1,5 @@
 <% if @team.errors.any?%>
-  <%@team.errors.full_message.each do |mess|%>
+  <%@team.errors.full_messages.each do |mess|%>
     <li style="color: red"><%= mess%></li>
   <%end%>
 <%end%>
@@ -8,7 +8,7 @@
   <h2 class="card-title bg-success text-center">Start Team<%=%></h2>
   <div class= "card-body">
 
-<%= form_with url: new_team_path do |f| %>
+<%= form_for(@team) do |f| %>   
 
 <%= f.label :name%><br/>
 <%= f.text_field :name %><br/>
@@ -17,11 +17,13 @@
 
   <div class="bg-success border-success"><h5> Add A Project</h5></div>
 
-<%= fields_for @projects do |project_f| %>
+<%= f.fields_for :projects do |project_f| %>
+
     <%=project_f.label :title%><br/>
     <%= project_f.text_field :title %><br />
     <%=project_f.label :goal%><br/>
     <%= project_f.text_area :goal %><br />
+    <%=project_f.hidden_field :user_id, value: current_user.id %>
   
 <% end %>
 <%= f.submit %>

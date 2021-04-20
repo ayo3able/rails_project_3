@@ -16,8 +16,9 @@ class TeamsController < ApplicationController
    end
 
    def create
+  
     @team = Team.new(team_params)
-    @team.team_id = @team_id
+  
     
          if @team.save
             redirect_to team_path(@team)
@@ -50,14 +51,12 @@ class TeamsController < ApplicationController
    private
 
    def set_team
-       @team = Project.find(params[:id])
+       @team = Team.find(params[:id])
        
    end
 
    def team_params
-       params.require(:team).permit(
-           :name,
-           projects_attributes: [:title, :goal])
+       params.require(:team).permit(:name, projects_attributes: [:title, :goal, :user_id])
    end
 
 
