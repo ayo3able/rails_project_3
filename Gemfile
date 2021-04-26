@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'faker'
 gem 'devise'
 gem 'pry'
+gem 'omniauth'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

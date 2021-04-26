@@ -8,6 +8,7 @@
     <div class ="card bg-info">
       <h2 class="card-title text-center">My Teams</h2>
     </div>
+    
 
     <div class ="card bg-success">
      <h2 class="card-title text-center">My Projects</h2>
@@ -22,10 +23,11 @@
 <div class="card-deck">
 
 <%# Team Card %>
- <% if current_user.teams.empty?%>
-   <div class ="card border-info ">
-   <div><button type="button" class="btn btn-secondary"><%= link_to 'Add a new Team'.html_safe, new_team_path(@team)%></button></div>
+
+   <div class ="card border-info mb-2">
+   <% if current_user.teams.empty?%>
       <div class="card-header text-center"> No Teams Yet </div>
+      <div><button type="button" class="btn btn-secondary"><%= link_to 'Add a new Team'.html_safe, new_team_path(@team)%></button></div>
       </div>
       <br/>
       <br/>
@@ -54,20 +56,20 @@
     <% end %>
   <% end %>
 </div>
+  <br/>
+       <br/>
 
 <%# Project Card %>
      
-  <% if current_user.projects.empty?%>
-     <div class ="card border-success ">
+  
+     <div class ="card border-success mb-2 ">
+     <% if current_user.projects.empty?%>
      <div class="card-header text-center"> No Projects Yet </div>
       <div class="card-body"> <h6>Start a new Team or Select Existing Team to Make a new Project</h6> </div>
       </div>
-         <br/>
-        <br/>
-     <%else%>
       
- 
-
+     <%else%>
+    
     <div class ="card border-success ">
     <% current_user.projects.each do |project| %>
      <div class="card-header text-center  border-success">
@@ -95,14 +97,14 @@
     <%# Task Card %>
     
     
-      <div class ="card border-warning ">
+      <div class ="card border-warning mb-2">
      <%if current_user.tasks.empty? %> 
           <div class="card-header text-center"><h4> No Tasks Yet</h4></div>
-          <div class="card-body"></div>
        </div>   
+  
     <% else %>
     
-    
+     <div class ="card border-warning ">
      <% current_user.tasks.uniq.each do |task|%>
            <div class="card-header text-center"><h4> <%=task.title%> </h4>
            <h6>Project: <%=task.project.title%></h6>
