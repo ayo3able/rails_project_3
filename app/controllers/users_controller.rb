@@ -35,14 +35,18 @@ class UsersController < ApplicationController
        end
     end
       
-  def destroy
+    def destroy
     
         if @user && @user.destroy
             redirect_to root_url, notice: "User deleted."
         end
-  end
+    end
+
+
 
     private
+
+  
 
     def set_user
         @user = User.find_by(id: params[:id])

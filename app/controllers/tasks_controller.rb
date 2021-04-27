@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     
     def index
         @tasks = Task.all
-  
+        @taks.alphabetize
     end
 
     def show

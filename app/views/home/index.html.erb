@@ -4,3 +4,10 @@
  <br/>
  <br/>
  <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-dark"%>
+
+ <br/>
+ <br/>
+ <%= form_tag("/auth/google_oauth2") do%>
+<%= submit_tag "Login with Google"%>
+<%end%>
+

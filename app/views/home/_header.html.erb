@@ -10,33 +10,38 @@
     
      <% if current_user && user_signed_in?%>
         <li class="nav-item">
-      <%= link_to "Home", new_user_session_path, class:"nav-link"%>
-      </li>
+          <%= link_to "Home", new_user_session_path, class:"nav-link"%>
+         </li>
 
         <li class="nav-item">
-      <%= link_to "New Team", new_team_path, class:"nav-link"%>
-      </li>
+          <%= link_to "New Team", new_team_path, class:"nav-link"%>
+        </li>
 
         <li class="nav-item">
-      <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link"%>
-      </li>
+          <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link"%>
+        </li>
 
         <li class="nav-item">
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link"%>
-      </li>
-            <%else%>
-<li class="nav-item">
-      <%= link_to "Sign Up", new_user_registration_path, class:"nav-link"%>
-      </li>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link"%>
+        </li>
+      <%else%>
 
-            <li class="nav-item">
-      <%= link_to "Log In", new_user_session_path, class:"nav-link"%>
-      </li>
+        <li class="nav-item">
+         <%= link_to "Sign Up", new_user_registration_path, class:"nav-link"%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Projects", projects_path, class:"nav-link"%>
+        </li>
+
+        <li class="nav-item">
+         <%= link_to "Log In", new_user_session_path, class:"nav-link"%>
+        </li>
       <%end%>
       
-      <li class="nav-item">
-      <%= link_to "About Us", home_about_path, class:"nav-link"%>
-      </li>
+        <li class="nav-item">
+          <%= link_to "About Us", home_about_path, class:"nav-link"%>
+        </li>
      
   </div>
 </nav>
